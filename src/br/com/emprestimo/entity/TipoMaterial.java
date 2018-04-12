@@ -1,10 +1,15 @@
 package br.com.emprestimo.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -18,9 +23,12 @@ public class TipoMaterial {
 	@GeneratedValue(generator = "tipo_material_id_seq", strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false, unique = true)
 	private Integer id;
+	
 	@Column(name = "nome_tipo")
 	private String nomeTipo;
-
+	
+//	@OneToMany(mappedBy = "TipoMaterial", targetEntity = Material.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	private List<Material> Materials;
 
 	public TipoMaterial() {
 

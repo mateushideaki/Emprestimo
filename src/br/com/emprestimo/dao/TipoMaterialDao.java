@@ -26,12 +26,12 @@ public class TipoMaterialDao {
 
 		}
 
-		public TipoMaterial buscaPorMatricula(Integer matricula) {
+		public TipoMaterial buscaPorId(Integer id) {
 			session = hibernateUtil.getSessionFactory().openSession();
 			TipoMaterial tipoMaterial = null;
 
 			session.beginTransaction();
-			tipoMaterial = (TipoMaterial) session.get(TipoMaterial.class, matricula);
+			tipoMaterial = (TipoMaterial) session.get(TipoMaterial.class, id);
 			try {
 				tipoMaterial.setNomeTipo(tipoMaterial.getNomeTipo());
 			} catch (NullPointerException e) {

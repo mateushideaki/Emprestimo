@@ -25,6 +25,8 @@
 		<!-- Mapping files -->
 		<mapping class="br.com.emprestimo.entity.TipoMaterial"/>
 		<mapping class="br.com.emprestimo.entity.Pessoa"/>
+		<mapping class="br.com.emprestimo.entity.Material"/>
+		
 		
 		
     </session-factory>

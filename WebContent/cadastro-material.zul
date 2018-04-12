@@ -1,0 +1,28 @@
+<window id="cadastroMaterial" title="Cadastro de Materials" border="normal"
+	closable="true" use="br.com.emprestimo.controller.CadastroMaterialWindow">
+
+<vbox>
+
+	<groupbox width="300px">
+		<caption label="Código" />
+		<intbox id="codigoMaterial" placeholder="Código" disabled="true"/>
+	</groupbox>
+
+	<groupbox width="300px">
+		<caption label="Nome" />
+		<textbox id="nomeMaterial" placeholder="Nome"/>
+	</groupbox>
+	
+	<groupbox width="300px">
+		<caption label="Tipo Material" />
+		<intbox id="tipoMaterial" placeholder="Tipo Material"/>
+	</groupbox>
+		
+	<hbox>
+		<button id="salvar" label="Salvar"
+			onClick="cadastroMaterial.salvarMaterial()" />
+		<button id="deletar" label="Deletar"
+			onClick="cadastroMaterial.deletarMaterial()" />
+	</hbox>
+</vbox>
+</window>

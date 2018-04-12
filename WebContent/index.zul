@@ -1,12 +1,12 @@
 <?page title="Auto Generated index.zul"?>
-<window id="principalWindow" title="Emprestimo" border="normal"  use="br.com.emprestimo.controller.PrincipalWindow">
+<window id="principalWindow" title="Empréstimo" border="normal"  use="br.com.emprestimo.controller.PrincipalWindow">
 
 <vbox>
-	<button id="btnCadastrarPessoa" label="Cadastrar Pessoa" onClick="principalWindow.abreTelaCadastroPessoas()"/>
+	<button id="btnCadastrarPessoa" label="Cadastrar Pessoa" onClick="principalWindow.abreTelaCadastroPessoas()" style="background-color : green"/>
 	
 	<groupbox>
 		<caption label="Pessoas"/>
-		<listbox rows="5" id="listaPessoas" use="br.com.emprestimo.components.ListboxPessoas">
+		<listbox rows="3" id="listaPessoas" use="br.com.emprestimo.components.ListboxPessoas">
 			<listhead>
 				<listheader label="Matricula" />
 				<listheader label="Nome" />
@@ -19,13 +19,29 @@
 </vbox>
 
 <vbox>
-	<button id="btnCadastroTipoMaterial" label="Cadastrar Tipo Material" onClick="principalWindow.abreTelaCadastroTipo()"/>
+	<button id="btnCadastroTipoMaterial" label="Cadastrar Tipo Material" onClick="principalWindow.abreTelaCadastroTipo()" style="background-color : green"/>
 	
 	<groupbox>
 		<caption label="Tipos"/>
-		<listbox rows="5" id="listaTipos" use="br.com.emprestimo.components.ListboxTipo">
+		<listbox rows="3" id="listaTipos" use="br.com.emprestimo.components.ListboxTipo">
 			<listhead>
 				<listheader label="Id" />
+				<listheader label="Tipo Material" />
+			</listhead>
+		</listbox>
+	</groupbox>
+</vbox>
+
+<vbox>
+	<button id="btnCadastroMaterial" label="Cadastrar Material" onClick="principalWindow.abreTelaCadastroMaterial()" style="background-color : green"/>
+	
+	<groupbox>
+		<caption label="Tipos"/>
+		<listbox rows="3" id="listaMateriais" use="br.com.emprestimo.components.ListboxMaterial">
+			<listhead>
+				<listheader label="Codigo" />
+				<listheader label="Material" />
+				<listheader label="Data Atualização" />
 				<listheader label="Tipo Material" />
 			</listhead>
 		</listbox>
