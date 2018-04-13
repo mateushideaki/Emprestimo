@@ -22,12 +22,14 @@ public class ListboxTipo extends Listbox {
 
 	public void carregaLista(List<TipoMaterial> tipos) {
 		this.tiposLista = tipos;
+		this.getChildren().clear();
 		for (TipoMaterial tipoAtual : tipos) {
 			this.appendChild(new ListitemTipo(tipoAtual));
 		}
 	}
 
 	public void carregaLista() {
+		this.getChildren().clear();
 		for (TipoMaterial tipoAtual : this.getTiposLista()) {
 			this.appendChild(new ListitemTipo(tipoAtual));
 		}

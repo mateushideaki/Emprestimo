@@ -1,5 +1,6 @@
 package br.com.emprestimo.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.zkoss.zhtml.Messagebox;
@@ -67,10 +68,10 @@ public class CadastroPessoaWindow extends Window {
 		}
 
 		if (this.getWindowPai() != null) {
-			dao.listPessoas();
-			this.getWindowPai().getListaPessoas().carregaLista();
+			List<Pessoa> listaPessoas = dao.listPessoas();
+			this.getWindowPai().getListaPessoas().carregaLista(listaPessoas);
 		}
-
+		
 		this.detach();
 
 	}
@@ -95,8 +96,8 @@ public class CadastroPessoaWindow extends Window {
 		Messagebox.show("Pessoa " + pessoaUpdate.getNome() + " excluida com sucesso.");
 		
 		if (this.getWindowPai() != null) {
-			dao.listPessoas();
-			this.getWindowPai().getListaPessoas().carregaLista();
+			List<Pessoa> listaPessoas = dao.listPessoas();
+			this.getWindowPai().getListaPessoas().carregaLista(listaPessoas);
 		}
 		
 		this.detach();

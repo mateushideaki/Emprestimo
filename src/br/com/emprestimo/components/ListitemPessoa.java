@@ -11,11 +11,17 @@ import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Window;
 
+import br.com.emprestimo.controller.PrincipalWindow;
 import br.com.emprestimo.entity.Pessoa;
 
 public class ListitemPessoa extends Listitem {
 	
 	private Pessoa pessoa;
+	
+	public PrincipalWindow getPrincipalWindow() {
+		PrincipalWindow principalWindow = (PrincipalWindow) this.getParent().getParent().getParent().getParent();
+		return principalWindow;
+	}
 	
 	private Listcell colMatricula = new Listcell();
 
@@ -40,7 +46,7 @@ public class ListitemPessoa extends Listitem {
 
 				HashMap<String, Pessoa> pessoaMap = new HashMap<String, Pessoa>();
 				pessoaMap.put("pessoaUpdate", pessoa);
-				Component componente = Executions.getCurrent().createComponents("/cadastro-pessoa.zul", null, pessoaMap);
+				Component componente = Executions.getCurrent().createComponents("/cadastro-pessoa.zul", getPrincipalWindow(), pessoaMap);
 				if (componente != null) {
 					((Window) componente).doModal();
 				}

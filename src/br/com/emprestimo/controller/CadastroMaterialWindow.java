@@ -1,5 +1,6 @@
 package br.com.emprestimo.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.zkoss.zhtml.Messagebox;
@@ -63,13 +64,16 @@ public class CadastroMaterialWindow extends Window {
 			Messagebox.show("salvo");
 		}
 
-		if (this.getWindowPai() != null) {
-			dao.listMaterials();
-			this.getWindowPai().getListaMateriais().carregaLista();
-		}
-
+		this.atualizaLista();
 		this.detach();
 
+	}
+	
+	public void atualizaLista() {
+		if (this.getWindowPai() != null) {
+			List<Material> listaMateriais = dao.listMaterials();
+			this.getWindowPai().getListaMateriais().carregaLista(listaMateriais);
+		}
 	}
 
 	public void cancelar() {
@@ -90,11 +94,7 @@ public class CadastroMaterialWindow extends Window {
 		dao.delete(material.getCodigo());
 		Messagebox.show("Material " + materialUpdate.getNomeMaterial() + " excluido com sucesso.");
 		
-		if (this.getWindowPai() != null) {
-			dao.listMaterials();
-			this.getWindowPai().getListaMateriais().carregaLista();
-		}
-		
+		this.atualizaLista();
 		this.detach();
 	}
 }

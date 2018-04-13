@@ -23,12 +23,14 @@ public class ListboxPessoas extends Listbox {
 
 	public void carregaLista(List<Pessoa> pessoas) {
 		this.pessoasLista = pessoas;
+		this.getChildren().clear();
 		for (Pessoa pessoaAtual : pessoas) {
 			this.appendChild(new ListitemPessoa(pessoaAtual));
 		}
 	}
 
 	public void carregaLista() {
+		this.getChildren().clear();
 		for (Pessoa pessoaAtual : this.getPessoasLista()) {
 			this.appendChild(new ListitemPessoa(pessoaAtual));
 		}

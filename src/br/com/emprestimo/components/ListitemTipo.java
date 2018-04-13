@@ -11,6 +11,7 @@ import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Window;
 
+import br.com.emprestimo.controller.PrincipalWindow;
 import br.com.emprestimo.entity.TipoMaterial;
 
 public class ListitemTipo extends Listitem {
@@ -20,6 +21,11 @@ public class ListitemTipo extends Listitem {
 	private Listcell colId = new Listcell();
 
 	private Listcell colNome = new Listcell();
+	
+	public PrincipalWindow getPrincipalWindow() {
+		PrincipalWindow principalWindow = (PrincipalWindow) this.getParent().getParent().getParent().getParent();
+		return principalWindow;
+	}	
 	
 	public ListitemTipo(TipoMaterial tipoMaterial) {
 		this.tipoMaterial = tipoMaterial;
@@ -34,7 +40,7 @@ public class ListitemTipo extends Listitem {
 
 				HashMap<String, TipoMaterial> tipoMaterialMap = new HashMap<String, TipoMaterial>();
 				tipoMaterialMap.put("tipoMaterialUpdate", tipoMaterial);
-				Component componente = Executions.getCurrent().createComponents("/cadastro-tipo-material.zul", null, tipoMaterialMap);
+				Component componente = Executions.getCurrent().createComponents("/cadastro-tipo-material.zul", getPrincipalWindow(), tipoMaterialMap);
 				if (componente != null) {
 					((Window) componente).doModal();
 				}

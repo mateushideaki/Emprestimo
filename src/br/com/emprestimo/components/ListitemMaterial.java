@@ -12,6 +12,7 @@ import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Window;
 
+import br.com.emprestimo.controller.PrincipalWindow;
 import br.com.emprestimo.entity.Material;
 
 public class ListitemMaterial extends Listitem {
@@ -25,6 +26,10 @@ public class ListitemMaterial extends Listitem {
 	
 	private Listcell colTipo = new Listcell();
 	
+	public PrincipalWindow getPrincipalWindow() {
+		PrincipalWindow principalWindow = (PrincipalWindow) this.getParent().getParent().getParent().getParent();
+		return principalWindow;
+	}	
 	
 	public ListitemMaterial(Material material) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -43,7 +48,7 @@ public class ListitemMaterial extends Listitem {
 
 				HashMap<String, Material> materialMap = new HashMap<String, Material>();
 				materialMap.put("materialUpdate", material);
-				Component componente = Executions.getCurrent().createComponents("/cadastro-material.zul", null, materialMap);
+				Component componente = Executions.getCurrent().createComponents("/cadastro-material.zul", getPrincipalWindow(), materialMap);
 				if (componente != null) {
 					((Window) componente).doModal();
 				}
