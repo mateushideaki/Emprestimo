@@ -1,5 +1,6 @@
 package br.com.emprestimo.components;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.zkoss.zul.Listbox;
@@ -34,7 +35,17 @@ public class ListboxMaterial extends Listbox {
 			this.appendChild(new ListitemMaterial(materialAtual));
 		}
 	}
+	
+	public void clearList() {
+		this.materiaisLista = new ArrayList<>();
+		this.getItems().clear();
+	}
 
+	public void addMaterial(Material material) {
+		this.materiaisLista.add(material);
+		this.appendChild(new ListitemMaterial(material, true));
+	}
+	
 	public List<Material> getMaterialsLista() {
 		return this.materiaisLista;
 	}

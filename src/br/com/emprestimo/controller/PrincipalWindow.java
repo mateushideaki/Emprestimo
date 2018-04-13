@@ -49,6 +49,13 @@ public class PrincipalWindow extends Window {
 			((Window) componente).doModal();
 		}
 	}
+	
+	public void abreTelaDevolucao() {
+		Component componente = Executions.getCurrent().createComponents("/devolucao.zul", this, null);
+		if (componente != null) {
+			((Window) componente).doModal();
+		}
+	}
     
     public void cancelar() {
     	this.detach();

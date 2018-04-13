@@ -4,6 +4,7 @@
 <vbox>
 	<toolbar>
 		<toolbarbutton id="btnEmprestimo" label="Realizar Emprestimo" onClick="principalWindow.abreTelaEmprestimo()"/>
+		<toolbarbutton id="btnDevolucao" label="Realizar Devolução" onClick="principalWindow.abreTelaDevolucao()"/>
 		<toolbarbutton id="btnCadastrarPessoa" label="Cadastrar Pessoa" onClick="principalWindow.abreTelaCadastroPessoas()" />
 		<toolbarbutton id="btnCadastroTipoMaterial" label="Cadastrar Tipo Material" onClick="principalWindow.abreTelaCadastroTipo()" />
 		<toolbarbutton id="btnCadastroMaterial" label="Cadastrar Material" onClick="principalWindow.abreTelaCadastroMaterial()" />

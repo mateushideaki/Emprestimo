@@ -78,6 +78,17 @@ public class EmprestimoDao {
 		session.close();
 		return emprestimos;
 	}
+	
+	public List<Emprestimo> listEmprestimos(int matriculaPessoa) {
+		session = hibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		String hql = "FROM Emprestimo m where pessoa = " + matriculaPessoa;
+		List<Emprestimo> emprestimos = session.createQuery(hql).list();
+		System.out.println(emprestimos);
+		session.getTransaction().commit();
+		session.close();
+		return emprestimos;
+	}
 
 	public void atualizar(Emprestimo emprestimoUpdate, Pessoa pessoa, Material material) {
 		session = hibernateUtil.getSessionFactory().openSession();

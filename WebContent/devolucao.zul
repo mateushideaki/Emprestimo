@@ -1,5 +1,5 @@
-<window id="Devolucao" title="Emprestimo de materiais" border="normal"
-	closable="true" use="br.com.emprestimo.controller.EmprestimoWindow">
+<window id="devolucao" title="Devolução de materiais" border="normal"
+	closable="true" use="br.com.emprestimo.controller.DevolucaoWindow">
 
 	<hbox>
 		<vbox>
@@ -10,7 +10,7 @@
 			</groupbox>
 
 			<button id="buscarPessoa" label="Buscar Pessoa"
-				onClick="emprestimos.buscarPessoa()" />
+				onClick="devolucao.buscarPessoa()" />
 
 			<groupbox width="300px">
 				<caption label="Nome" />
@@ -33,34 +33,19 @@
 		</vbox>
 
 		<vbox>
-			<groupbox width="300px">
-				<caption label="Código Material]" />
-				<intbox id="codigoMaterial"
-					placeholder="Codigo Material" />
-			</groupbox>
-
-			<button id="adicionarMaterial" label="Adicionar Material"
-				onClick="emprestimos.adicionarMaterial()" />
-
 			<groupbox>
-				<caption label="Lista Empréstimo" />
-				<listbox rows="4" width="400px" id="listaEmprestimo"
-					use="br.com.emprestimo.components.ListboxMaterial">
+				<caption label="Lista Devolução" />
+				<listbox rows="4" width="400px" id="listaEmprestimo" multiple="true" checkmark="true"
+					use="br.com.emprestimo.components.ListboxEmprestimo">
 					<listhead>
-						<listheader label="Cod" />
-						<listheader label="Nome" width="100px" />
-						<listheader label="Data" width="100px" />
-						<listheader label="Tipo" />
+						<listheader label="Id Empréstimo" />
+						<listheader label="Material" />
 					</listhead>
 				</listbox>
 			</groupbox>
 		</vbox>
-		
-		
 	</hbox>
 	
-	<button id="salvar" label="Efetivar" width="100%" style="margin-top : 10px;"
-					onClick="emprestimos.efetivarEmprestimo()" />
+	<button id="salvar" label="Devolver Materiais Selecionados" width="100%" style="margin-top : 10px;"
+					onClick="devolucao.devolverMateriais()" />
 </window>
-</window>
-</zk>

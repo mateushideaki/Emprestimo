@@ -1,13 +1,16 @@
 package br.com.emprestimo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.zkoss.zk.ui.event.CreateEvent;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
+import br.com.emprestimo.components.ListboxEmprestimo;
 import br.com.emprestimo.components.ListboxMaterial;
-import br.com.emprestimo.components.ListitemMaterial;
 import br.com.emprestimo.dao.EmprestimoDao;
 import br.com.emprestimo.dao.MaterialDao;
 import br.com.emprestimo.dao.PessoaDao;
@@ -15,7 +18,7 @@ import br.com.emprestimo.entity.Emprestimo;
 import br.com.emprestimo.entity.Material;
 import br.com.emprestimo.entity.Pessoa;
 
-public class EmprestimoWindow extends Window {
+public class DevolucaoWindow extends Window {
 	private Pessoa pessoa;
 	private PessoaDao pessoaDao = new PessoaDao();
 
@@ -51,12 +54,13 @@ public class EmprestimoWindow extends Window {
 		return (Intbox) this.getFellow("codigoMaterial");
 	}
 
-	public ListboxMaterial getListMateriais() {
-		return (ListboxMaterial) this.getFellow("listaEmprestimo");
+	public ListboxEmprestimo getListaEmprestimos() {
+		return (ListboxEmprestimo) this.getFellow("listaEmprestimo");
 	}
 
 	public void onCreate(CreateEvent e) {
-		this.getListMateriais().clearList();
+		ListboxEmprestimo listaEmprestimos = this.getListaEmprestimos();
+		listaEmprestimos.getItems().clear();
 	}
 
 	public void buscarPessoa() {
@@ -70,43 +74,40 @@ public class EmprestimoWindow extends Window {
 		this.getTxtNome().setValue(this.pessoa.getNome());
 		this.getTxtEndereco().setValue(this.pessoa.getEndereco());
 		this.getTxtTelefone().setValue(this.pessoa.getTelefone());
-	}
-
-	public void adicionarMaterial() {
-		int codigo = getIntCodigo().getValue();
-		this.material = this.materialDao.buscaPorCodigo(codigo);
-		if (this.material == null) {
-			Messagebox.show("Material não foi encontrado.");
-			return;
+		
+		List<Emprestimo> listaEmprestimos = emprestimoDao.listEmprestimos(this.pessoa.getMatricula());
+		List<Material> listaMateriaisEmprestimo = new ArrayList<>();
+		
+		for(Emprestimo emprestimo : listaEmprestimos) {
+			listaMateriaisEmprestimo.add(emprestimo.getMaterial());
 		}
-
-		this.getListMateriais().addMaterial(this.material);
+		
+		this.getListaEmprestimos().carregaLista(listaEmprestimos);
+		
 	}
 
-	public void efetivarEmprestimo() {
+	public void devolverMateriais() {
 		if (this.pessoa == null) {
 			Messagebox.show("Por favor, selecione uma pessoa.");
 			return;
 		}
 
-		if (this.getListMateriais().getItemCount() == 0) {
-			Messagebox.show("Por favor, selecione pelo menos um material.");
+		if (this.getListaEmprestimos().getItemCount() == 0) {
+			Messagebox.show("Por favor, selecione pelo menos um empréstimo.");
 			return;
 		}
 
 		try {
-			for (Material material : this.getListMateriais().getMaterialsLista()) {
-				this.emprestimo = new Emprestimo(this.pessoa, material);
-				emprestimoDao.save(emprestimo);
+			for (Emprestimo emprestimo : this.getListaEmprestimos().getEmprestimosSelecionados()) {
+				emprestimoDao.delete(emprestimo.getId());
 			}
-			Messagebox.show("Emprestimo cadastrado com sucesso.");
+			Messagebox.show("Devoluções concluídas.");
 		} catch (Exception ex) {
-			Messagebox.show("Erro ao realizar emprestimo: " + ex.getMessage());
+			Messagebox.show("Erro ao realizar devolução: " + ex.getMessage());
 		}
-
+		
 		this.detach();
 
 	}
-
 
 }
