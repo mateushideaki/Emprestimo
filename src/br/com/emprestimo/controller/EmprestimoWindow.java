@@ -7,7 +7,6 @@ import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
 import br.com.emprestimo.components.ListboxMaterial;
-import br.com.emprestimo.components.ListitemMaterial;
 import br.com.emprestimo.dao.EmprestimoDao;
 import br.com.emprestimo.dao.MaterialDao;
 import br.com.emprestimo.dao.PessoaDao;

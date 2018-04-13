@@ -1,10 +1,8 @@
 package br.com.emprestimo.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import br.com.emprestimo.entity.TipoMaterial;
 import br.com.emprestimo.util.HibernateUtil;

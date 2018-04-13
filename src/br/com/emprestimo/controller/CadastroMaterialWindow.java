@@ -5,14 +5,11 @@ import java.util.Map;
 
 import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.event.CreateEvent;
-import org.zkoss.zul.Combobox;
-import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
 import br.com.emprestimo.components.ComboboxTipo;
-import br.com.emprestimo.components.ComboitemTipo;
 import br.com.emprestimo.dao.MaterialDao;
 import br.com.emprestimo.dao.TipoMaterialDao;
 import br.com.emprestimo.entity.Material;
