@@ -5,10 +5,14 @@ import java.util.Map;
 
 import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.event.CreateEvent;
+import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
+import br.com.emprestimo.components.ComboboxTipo;
+import br.com.emprestimo.components.ComboitemTipo;
 import br.com.emprestimo.dao.MaterialDao;
 import br.com.emprestimo.dao.TipoMaterialDao;
 import br.com.emprestimo.entity.Material;
@@ -30,8 +34,8 @@ public class CadastroMaterialWindow extends Window {
 		return (Textbox) this.getFellow("nomeMaterial");
 	}
 
-	public Intbox getIntTipoMaterial() {
-		return (Intbox) this.getFellow("tipoMaterial");
+	public ComboboxTipo getComboboxTipo() {
+		return (ComboboxTipo) this.getFellow("tipoMaterial");
 	}
 
 
@@ -43,13 +47,17 @@ public class CadastroMaterialWindow extends Window {
 		if (materialUpdate != null) {
 			getIntCodigo().setValue(materialUpdate.getCodigo());
 			getTxtNomeMaterial().setValue(materialUpdate.getNomeMaterial());
-			getIntTipoMaterial().setValue(materialUpdate.getTipo().getId());
+			getComboboxTipo().setTipoSelecionado(materialUpdate.getTipo());
 		}
+		
+		TipoMaterialDao tipoDao = new TipoMaterialDao();
+		List<TipoMaterial> listaTipos = tipoDao.listtipoMaterials();
+		this.getComboboxTipo().carregaLista(listaTipos);
 	}
 
 	public void salvarMaterial() {
 		TipoMaterialDao tipoDao = new TipoMaterialDao();
-		TipoMaterial tipoMaterial = tipoDao.buscaPorId(this.getIntTipoMaterial().getValue());
+		TipoMaterial tipoMaterial = tipoDao.buscaPorId(this.getComboboxTipo().getTipoSelecionado().getId());
 		
 		Material material = new Material();
 		material.setCodigo(this.getIntCodigo().getValue());
@@ -84,7 +92,7 @@ public class CadastroMaterialWindow extends Window {
 	public void limpar() {
 		this.getIntCodigo().setValue(null);
 		this.getTxtNomeMaterial().setValue("");
-		this.getIntTipoMaterial().setValue(null);
+		this.getComboboxTipo().setSelectedIndex(0);
 	}
 	
 	public void deletarMaterial() {
