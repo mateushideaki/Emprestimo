@@ -27,8 +27,8 @@ public class TipoMaterial {
 	@Column(name = "nome_tipo")
 	private String nomeTipo;
 	
-//	@OneToMany(mappedBy = "TipoMaterial", targetEntity = Material.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	private List<Material> Materials;
+//	@OneToMany(mappedBy = "tipoMaterial", targetEntity = Material.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	private List<Material> materiais;
 
 	public TipoMaterial() {
 
@@ -53,6 +53,15 @@ public class TipoMaterial {
 	public void setNomeTipo(String nomeTipo) {
 		this.nomeTipo = nomeTipo;
 	}
+
+//	public List<Material> getMateriais() {
+//		return materiais;
+//	}
+//
+//	public void setMateriais(List<Material> materiais) {
+//		this.materiais = materiais;
+//	}
+	
 	
 }
 

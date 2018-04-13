@@ -26,7 +26,7 @@ public class MaterialDao {
 
 		}
 
-		public Material buscaPorMatricula(Integer codigo) {
+		public Material buscaPorCodigo(Integer codigo) {
 			session = hibernateUtil.getSessionFactory().openSession();
 			Material material = null;
 
@@ -44,7 +44,8 @@ public class MaterialDao {
 			return material;
 		}
 
-		public void delete(Integer codigo) {
+		public boolean delete(Integer codigo) {
+			boolean deletou = false;
 			session = hibernateUtil.getSessionFactory().openSession();
 
 			Material material = null;
@@ -55,13 +56,17 @@ public class MaterialDao {
 				if (material != null) {
 					session.delete(material);
 					session.getTransaction().commit();
+					deletou = true;
 				}
 				
 			} catch (Exception e) {
 				System.out.println(e);
+				deletou = false;
 			} finally {
 				session.close();
 			}
+			
+			return deletou;
 		}
 
 		public List<Material> listMaterials() {

@@ -22,14 +22,14 @@ public class ListboxMaterial extends Listbox {
 
 	public void carregaLista(List<Material> materiais) {
 		this.materiaisLista = materiais;
-		this.getChildren().clear();
+		this.getItems().clear();
 		for (Material materialAtual : materiais) {
 			this.appendChild(new ListitemMaterial(materialAtual));
 		}
 	}
 
 	public void carregaLista() {
-		this.getChildren().clear();
+		this.getItems().clear();
 		for (Material materialAtual : this.getMaterialsLista()) {
 			this.appendChild(new ListitemMaterial(materialAtual));
 		}

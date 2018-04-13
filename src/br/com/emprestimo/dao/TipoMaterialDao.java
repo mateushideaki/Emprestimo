@@ -43,7 +43,8 @@ public class TipoMaterialDao {
 			return tipoMaterial;
 		}
 
-		public void delete(Integer id) {
+		public boolean delete(Integer id) {
+			boolean deletou = false;
 			session = hibernateUtil.getSessionFactory().openSession();
 
 			TipoMaterial tipoMaterial = null;
@@ -54,6 +55,7 @@ public class TipoMaterialDao {
 				if (tipoMaterial != null) {
 					session.delete(tipoMaterial);
 					session.getTransaction().commit();
+					deletou = true;
 				}
 				
 			} catch (Exception e) {
@@ -61,6 +63,8 @@ public class TipoMaterialDao {
 			} finally {
 				session.close();
 			}
+			
+			return deletou;
 		}
 
 		public List<TipoMaterial> listtipoMaterials() {

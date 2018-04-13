@@ -26,7 +26,7 @@
 		<mapping class="br.com.emprestimo.entity.TipoMaterial"/>
 		<mapping class="br.com.emprestimo.entity.Pessoa"/>
 		<mapping class="br.com.emprestimo.entity.Material"/>
-		
+		<mapping class="br.com.emprestimo.entity.Emprestimo"/>
 		
 		
     </session-factory>

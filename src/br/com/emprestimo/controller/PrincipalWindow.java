@@ -42,6 +42,13 @@ public class PrincipalWindow extends Window {
 			((Window) componente).doModal();
 		}
 	}
+	
+	public void abreTelaEmprestimo() {
+		Component componente = Executions.getCurrent().createComponents("/emprestimo.zul", this, null);
+		if (componente != null) {
+			((Window) componente).doModal();
+		}
+	}
     
     public void cancelar() {
     	this.detach();

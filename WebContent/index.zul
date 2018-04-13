@@ -1,8 +1,13 @@
-<?page title="Auto Generated index.zul"?>
-<window id="principalWindow" title="Empréstimo" border="normal"  use="br.com.emprestimo.controller.PrincipalWindow">
+<?page title="Empréstimo de Materiais Via Appia"?>
+<window id="principalWindow" title="Empréstimo de Materiais Via Appia" border="normal"  use="br.com.emprestimo.controller.PrincipalWindow">
 
 <vbox>
-	<button id="btnCadastrarPessoa" label="Cadastrar Pessoa" onClick="principalWindow.abreTelaCadastroPessoas()" style="background-color : green"/>
+	<toolbar>
+		<toolbarbutton id="btnEmprestimo" label="Realizar Emprestimo" onClick="principalWindow.abreTelaEmprestimo()"/>
+		<toolbarbutton id="btnCadastrarPessoa" label="Cadastrar Pessoa" onClick="principalWindow.abreTelaCadastroPessoas()" />
+		<toolbarbutton id="btnCadastroTipoMaterial" label="Cadastrar Tipo Material" onClick="principalWindow.abreTelaCadastroTipo()" />
+		<toolbarbutton id="btnCadastroMaterial" label="Cadastrar Material" onClick="principalWindow.abreTelaCadastroMaterial()" />
+	</toolbar>
 	
 	<groupbox>
 		<caption label="Pessoas"/>
@@ -19,7 +24,6 @@
 </vbox>
 
 <vbox>
-	<button id="btnCadastroTipoMaterial" label="Cadastrar Tipo Material" onClick="principalWindow.abreTelaCadastroTipo()" style="background-color : green"/>
 	
 	<groupbox>
 		<caption label="Tipos"/>
@@ -33,10 +37,9 @@
 </vbox>
 
 <vbox>
-	<button id="btnCadastroMaterial" label="Cadastrar Material" onClick="principalWindow.abreTelaCadastroMaterial()" style="background-color : green"/>
 	
 	<groupbox>
-		<caption label="Tipos"/>
+		<caption label="Materiais"/>
 		<listbox rows="3" id="listaMateriais" use="br.com.emprestimo.components.ListboxMaterial">
 			<listhead>
 				<listheader label="Codigo" />

@@ -99,9 +99,12 @@ public class CadastroMaterialWindow extends Window {
 		MaterialDao dao = new MaterialDao();
 		Material material = new Material();
 		material.setCodigo(materialUpdate.getCodigo());
-		dao.delete(material.getCodigo());
-		Messagebox.show("Material " + materialUpdate.getNomeMaterial() + " excluido com sucesso.");
-		
+		boolean deletou = dao.delete(material.getCodigo());
+		if(deletou)
+			Messagebox.show("Material " + materialUpdate.getNomeMaterial() + " excluido com sucesso.");
+		else
+			Messagebox.show("Não foi possível deletar este material, verifique se existem dependências.");
+			
 		this.atualizaLista();
 		this.detach();
 	}

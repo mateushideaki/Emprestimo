@@ -81,8 +81,11 @@ public class CadastroTipoMaterialWindow extends Window {
 		TipoMaterialDao dao = new TipoMaterialDao();
 		TipoMaterial tipoMaterial = new TipoMaterial();
 		tipoMaterial.setId(tipoMaterialUpdate.getId());
-		dao.delete(tipoMaterial.getId());
-		Messagebox.show("Tipo Material " + tipoMaterialUpdate.getNomeTipo() + " excluido com sucesso.");
+		boolean deletou = dao.delete(tipoMaterial.getId());
+		if (deletou)
+			Messagebox.show("Tipo Material " + tipoMaterialUpdate.getNomeTipo() + " excluido com sucesso.");
+		else 
+			Messagebox.show("Não foi possível deletar este tipo, verifique se existem dependências.");
 
 		this.atualizaLista();
 		this.detach();

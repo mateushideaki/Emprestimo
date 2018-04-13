@@ -17,7 +17,16 @@
 		<button id="salvar" label="Salvar"
 			onClick="cadastroTipoMaterial.salvarTipoMaterial()" />
 		<button id="deletar" label="Deletar"
-			onClick="cadastroTipoMaterial.deletarTipoMaterial()" />
+			onClick='Messagebox.show("Deseja realmente remover este tipo?", "Confirmação", Messagebox.YES|Messagebox.NO, Messagebox.QUESTION, 
+					new org.zkoss.zk.ui.event.EventListener() { 
+						public void onEvent(Event evt) { 
+						switch (((Integer)evt.getData()).intValue()) { 
+						case Messagebox.YES: 
+							cadastroTipoMaterial.deletarTipoMaterial();
+							break; 
+						} 
+					} 
+				});' />
 	</hbox>
 </vbox>
 </window>

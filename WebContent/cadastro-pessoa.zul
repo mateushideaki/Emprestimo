@@ -1,33 +1,45 @@
 <window id="cadastroPessoa" title="Cadastro de Pessoas" border="normal"
-	closable="true" use="br.com.emprestimo.controller.CadastroPessoaWindow">
+	closable="true"
+	use="br.com.emprestimo.controller.CadastroPessoaWindow">
 
-<vbox>
+	<vbox>
 
-	<groupbox width="300px">
-		<caption label="Matricula" />
-		<intbox id="matriculaPessoa" placeholder="Matricula" disabled="true"/>
-	</groupbox>
+		<groupbox width="300px">
+			<caption label="Matricula" />
+			<intbox id="matriculaPessoa" placeholder="Matricula"
+				disabled="true" />
+		</groupbox>
 
-	<groupbox width="300px">
-		<caption label="Nome" />
-		<textbox id="nomePessoa" placeholder="Nome"/>
-	</groupbox>
-	
-	<groupbox width="300px">
-		<caption label="Endereço" />
-		<textbox id="enderecoPessoa" placeholder="Endereco"/>
-	</groupbox>
-	
-	<groupbox width="300px">
-		<caption label="Telefone" />
-		<textbox id="telefonePessoa" placeholder="Telefone"/>
-	</groupbox>
-		
-	<hbox>
-		<button id="salvar" label="Salvar"
-			onClick="cadastroPessoa.salvarPessoa()" />
-		<button id="deletar" label="Deletar"
-			onClick="cadastroPessoa.deletarPessoa()" />
-	</hbox>
-</vbox>
+		<groupbox width="300px">
+			<caption label="Nome" />
+			<textbox id="nomePessoa" placeholder="Nome" />
+		</groupbox>
+
+		<groupbox width="300px">
+			<caption label="Endereço" />
+			<textbox id="enderecoPessoa" placeholder="Endereco" />
+		</groupbox>
+
+		<groupbox width="300px">
+			<caption label="Telefone" />
+			<textbox id="telefonePessoa" placeholder="Telefone" />
+		</groupbox>
+
+		<hbox>
+			<button id="salvar" label="Salvar"
+				onClick="cadastroPessoa.salvarPessoa()" />
+			<button id="deletar" label="Deletar"
+				onClick='
+				Messagebox.show("Deseja realmente remover esta pessoa?", "Confirmação", Messagebox.YES|Messagebox.NO, Messagebox.QUESTION, 
+					new org.zkoss.zk.ui.event.EventListener() { 
+						public void onEvent(Event evt) { 
+						switch (((Integer)evt.getData()).intValue()) { 
+						case Messagebox.YES: 
+							cadastroPessoa.deletarPessoa();
+							break; 
+						} 
+					} 
+				});' />
+		</hbox>
+	</vbox>
 </window>

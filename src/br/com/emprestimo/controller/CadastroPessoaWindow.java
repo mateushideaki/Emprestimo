@@ -5,10 +5,13 @@ import java.util.Map;
 
 import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.event.CreateEvent;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
+import br.com.emprestimo.components.ListitemMaterial;
 import br.com.emprestimo.dao.PessoaDao;
 import br.com.emprestimo.entity.Pessoa;
 
@@ -89,16 +92,17 @@ public class CadastroPessoaWindow extends Window {
 	}
 	
 	public void deletarPessoa() {
+		
 		PessoaDao dao = new PessoaDao();
 		Pessoa pessoa = new Pessoa();
 		pessoa.setMatricula(pessoaUpdate.getMatricula());
 		dao.delete(pessoa.getMatricula());
-		Messagebox.show("Pessoa " + pessoaUpdate.getNome() + " excluida com sucesso.");
+		Messagebox.show("Pessoa " + pessoaUpdate.getNome() + " excluida com sucesso.");		
 		
 		if (this.getWindowPai() != null) {
 			List<Pessoa> listaPessoas = dao.listPessoas();
 			this.getWindowPai().getListaPessoas().carregaLista(listaPessoas);
-		}
+		}	
 		
 		this.detach();
 	}

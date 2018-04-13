@@ -1,0 +1,66 @@
+<window id="Devolucao" title="Emprestimo de materiais" border="normal"
+	closable="true" use="br.com.emprestimo.controller.EmprestimoWindow">
+
+	<hbox>
+		<vbox>
+
+			<groupbox width="300px">
+				<caption label="Matricula" />
+				<intbox id="matriculaPessoa" placeholder="Matricula" />
+			</groupbox>
+
+			<button id="buscarPessoa" label="Buscar Pessoa"
+				onClick="emprestimos.buscarPessoa()" />
+
+			<groupbox width="300px">
+				<caption label="Nome" />
+				<textbox id="nomePessoa" placeholder="Nome"
+					disabled="true" />
+			</groupbox>
+
+			<groupbox width="300px">
+				<caption label="Endereço" />
+				<textbox id="enderecoPessoa" placeholder="Endereco"
+					disabled="true" />
+			</groupbox>
+
+			<groupbox width="300px">
+				<caption label="Telefone" />
+				<textbox id="telefonePessoa" placeholder="Telefone"
+					disabled="true" />
+			</groupbox>
+
+		</vbox>
+
+		<vbox>
+			<groupbox width="300px">
+				<caption label="Código Material]" />
+				<intbox id="codigoMaterial"
+					placeholder="Codigo Material" />
+			</groupbox>
+
+			<button id="adicionarMaterial" label="Adicionar Material"
+				onClick="emprestimos.adicionarMaterial()" />
+
+			<groupbox>
+				<caption label="Lista Empréstimo" />
+				<listbox rows="4" width="400px" id="listaEmprestimo"
+					use="br.com.emprestimo.components.ListboxMaterial">
+					<listhead>
+						<listheader label="Cod" />
+						<listheader label="Nome" width="100px" />
+						<listheader label="Data" width="100px" />
+						<listheader label="Tipo" />
+					</listhead>
+				</listbox>
+			</groupbox>
+		</vbox>
+		
+		
+	</hbox>
+	
+	<button id="salvar" label="Efetivar" width="100%" style="margin-top : 10px;"
+					onClick="emprestimos.efetivarEmprestimo()" />
+</window>
+</window>
+</zk>

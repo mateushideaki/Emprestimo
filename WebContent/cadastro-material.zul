@@ -1,4 +1,4 @@
-<window id="cadastroMaterial" title="Cadastro de Materials" border="normal"
+<window id="cadastroMaterial" title="Cadastro de Material" border="normal"
 	closable="true" use="br.com.emprestimo.controller.CadastroMaterialWindow">
 
 <vbox>
@@ -22,7 +22,17 @@
 		<button id="salvar" label="Salvar"
 			onClick="cadastroMaterial.salvarMaterial()" />
 		<button id="deletar" label="Deletar"
-			onClick="cadastroMaterial.deletarMaterial()" />
+			onClick='Messagebox.show("Deseja realmente remover este material?", "Confirmação", Messagebox.YES|Messagebox.NO, Messagebox.QUESTION, 
+					new org.zkoss.zk.ui.event.EventListener() { 
+						public void onEvent(Event evt) { 
+						switch (((Integer)evt.getData()).intValue()) { 
+						case Messagebox.YES: 
+							cadastroMaterial.deletarMaterial();
+							break; 
+						} 
+					} 
+				});'
+			 />
 	</hbox>
 </vbox>
 </window>
