@@ -63,25 +63,30 @@ public class DevolucaoWindow extends Window {
 	}
 
 	public void buscarPessoa() {
-		int matricula = this.getIntMatricula().getValue();
-		this.pessoa = pessoaDao.buscaPorMatricula(matricula);
-		if (this.pessoa == null) {
-			Messagebox.show("Pessoa não foi encontrada.");
-			return;
+		try {
+			int matricula = this.getIntMatricula().getValue();
+			this.pessoa = pessoaDao.buscaPorMatricula(matricula);
+			if (this.pessoa == null) {
+				Messagebox.show("Pessoa não foi encontrada.");
+				return;
+			}
+			
+			this.getTxtNome().setValue(this.pessoa.getNome());
+			this.getTxtEndereco().setValue(this.pessoa.getEndereco());
+			this.getTxtTelefone().setValue(this.pessoa.getTelefone());
+			
+			List<Emprestimo> listaEmprestimos = emprestimoDao.listEmprestimos(this.pessoa.getMatricula());
+			List<Material> listaMateriaisEmprestimo = new ArrayList<>();
+			
+			for(Emprestimo emprestimo : listaEmprestimos) {
+				listaMateriaisEmprestimo.add(emprestimo.getMaterial());
+			}
+			
+			this.getListaEmprestimos().carregaLista(listaEmprestimos);		
+		} catch (Exception ex) {
+			Messagebox.show("Digite a matrícula da pessoa.");
 		}
-
-		this.getTxtNome().setValue(this.pessoa.getNome());
-		this.getTxtEndereco().setValue(this.pessoa.getEndereco());
-		this.getTxtTelefone().setValue(this.pessoa.getTelefone());
 		
-		List<Emprestimo> listaEmprestimos = emprestimoDao.listEmprestimos(this.pessoa.getMatricula());
-		List<Material> listaMateriaisEmprestimo = new ArrayList<>();
-		
-		for(Emprestimo emprestimo : listaEmprestimos) {
-			listaMateriaisEmprestimo.add(emprestimo.getMaterial());
-		}
-		
-		this.getListaEmprestimos().carregaLista(listaEmprestimos);
 		
 	}
 
@@ -91,7 +96,7 @@ public class DevolucaoWindow extends Window {
 			return;
 		}
 
-		if (this.getListaEmprestimos().getItemCount() == 0) {
+		if (this.getListaEmprestimos().getEmprestimosSelecionados().size() == 0) {
 			Messagebox.show("Por favor, selecione pelo menos um empréstimo.");
 			return;
 		}

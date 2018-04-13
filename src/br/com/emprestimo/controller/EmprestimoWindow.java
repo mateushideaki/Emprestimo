@@ -59,27 +59,37 @@ public class EmprestimoWindow extends Window {
 	}
 
 	public void buscarPessoa() {
-		int matricula = this.getIntMatricula().getValue();
-		this.pessoa = pessoaDao.buscaPorMatricula(matricula);
-		if (this.pessoa == null) {
-			Messagebox.show("Pessoa não foi encontrada.");
-			return;
-		}
+		try {
 
-		this.getTxtNome().setValue(this.pessoa.getNome());
-		this.getTxtEndereco().setValue(this.pessoa.getEndereco());
-		this.getTxtTelefone().setValue(this.pessoa.getTelefone());
+			int matricula = this.getIntMatricula().getValue();
+			this.pessoa = pessoaDao.buscaPorMatricula(matricula);
+
+			if (this.pessoa == null) {
+				Messagebox.show("Pessoa não foi encontrada.");
+				return;
+			}
+
+			this.getTxtNome().setValue(this.pessoa.getNome());
+			this.getTxtEndereco().setValue(this.pessoa.getEndereco());
+			this.getTxtTelefone().setValue(this.pessoa.getTelefone());
+		} catch (Exception ex) {
+			Messagebox.show("Digite a matrícula da pessoa.");
+		}
 	}
 
 	public void adicionarMaterial() {
-		int codigo = getIntCodigo().getValue();
-		this.material = this.materialDao.buscaPorCodigo(codigo);
-		if (this.material == null) {
-			Messagebox.show("Material não foi encontrado.");
-			return;
+		try {			
+			int codigo = getIntCodigo().getValue();
+			this.material = this.materialDao.buscaPorCodigo(codigo);
+			if (this.material == null) {
+				Messagebox.show("Material não foi encontrado.");
+				return;
+			}
+			
+			this.getListMateriais().addMaterial(this.material);
+		} catch (Exception ex) {
+			Messagebox.show("Digite o código do material.");
 		}
-
-		this.getListMateriais().addMaterial(this.material);
 	}
 
 	public void efetivarEmprestimo() {
@@ -106,6 +116,5 @@ public class EmprestimoWindow extends Window {
 		this.detach();
 
 	}
-
 
 }
